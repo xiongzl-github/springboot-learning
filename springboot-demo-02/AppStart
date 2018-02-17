@@ -1,0 +1,53 @@
+package com.timebook;
+
+import com.alibaba.fastjson.serializer.SerializerFeature;
+import com.alibaba.fastjson.support.config.FastJsonConfig;
+import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.web.HttpMessageConverters;
+import org.springframework.context.annotation.Bean;
+import org.springframework.http.converter.HttpMessageConverter;
+
+/**
+ * @title: AppStart
+ * @author: xiongzl
+ * @date: 2018/2/17
+ * @descprition: springboot 项目启动类
+ */
+@SpringBootApplication
+public class AppStart {
+
+    public static void main(String[] args) {
+        SpringApplication.run(Main.class, args);
+    }
+
+
+    /**
+     * @methodName fastJsonHttpMessageConverters
+     * @author xiongzl
+     * @date 2018/2/17
+     * @Param
+     * @return org.springframework.boot.autoconfigure.web.HttpMessageConverters
+     * @desc 使用@Bean的方式注入FastJsonHttpMessageConverter对象
+     */
+    @Bean
+    public HttpMessageConverters fastJsonHttpMessageConverters() {
+        // 1. 定义一个convert消息转换对象
+        FastJsonHttpMessageConverter fastConverter = new FastJsonHttpMessageConverter();
+
+        FastJsonConfig fastJsonConfig = new FastJsonConfig();
+
+        // 2. 添加fastJson的配置信息
+        fastJsonConfig.setSerializerFeatures(SerializerFeature.PrettyFormat);
+        // 3. 在convert中添加配置信息
+        fastConverter.setFastJsonConfig(fastJsonConfig);
+        // 4. 将convert添加到converters当中
+        HttpMessageConverter<?> converter = fastConverter;
+        return new HttpMessageConverters(converter);
+    }
+
+
+
+
+}
