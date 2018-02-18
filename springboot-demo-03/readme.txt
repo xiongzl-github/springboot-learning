@@ -29,7 +29,7 @@ spring boot如何实现热部署
     </plugin>
     运行: $ mvn clean spring-boot:run
 
-3. notice
+3. 值得注意的问题
     3-1: devtools会监听classpath 下文件的变动, 并且会立即重启应用(发生在保存时机),
          注意: 因为其采用的虚拟机机制, 该项重启是很快的.
 
