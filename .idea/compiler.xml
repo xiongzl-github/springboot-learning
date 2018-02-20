@@ -11,6 +11,7 @@
         <module name="springboot-demo-03" />
         <module name="springboot-demo-04" />
         <module name="springboot-demo-05" />
+        <module name="springboot-demo-06" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -19,6 +20,7 @@
       <module name="springboot-demo-03" target="1.7" />
       <module name="springboot-demo-04" target="1.7" />
       <module name="springboot-demo-05" target="1.7" />
+      <module name="springboot-demo-06" target="1.7" />
     </bytecodeTargetLevel>
   </component>
 </project>
