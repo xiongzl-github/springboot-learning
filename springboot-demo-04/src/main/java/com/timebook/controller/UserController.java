@@ -82,16 +82,6 @@ public class UserController {
         } else {
             return UserController.FAILED;
         }
-
-//        if (null == pageModel) {
-//            return UserController.FAILED;
-//        } else if (null == pageSize) {
-//            return UserController.FAILED;
-//        } else if (null == pageNum) {
-//            return UserController.FAILED;
-//        } else {
-//            return null;
-//        }
     }
 
 
