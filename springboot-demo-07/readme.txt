@@ -23,12 +23,13 @@
             <optional>true</optional>
         </dependency>
         这样就可以将值绑定到对应的属性上了.
-    1-4: 如果不想将所有的属性都放置在
-
-
-
-
-
-
-
-
+    1-4: 如果不想将所有的属性都放置在application.properties中,
+         也可以另外新建一个properties, 将其放置在classpath下即可.
+         只是在配置的时候需要使用@PropertySource注解指定properties文件的路径所在位置.
+         @Data
+         @Configuration
+         @ConfigurationProperties(prefix = "db")
+         @PropertySource("classpath:db.properties")
+         public class DataBaseInfo {
+             private String name;
+             private String password;
