@@ -5,6 +5,8 @@ import com.alibaba.fastjson.support.config.FastJsonConfig;
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.web.HttpMessageConverters;
+import org.springframework.context.annotation.Bean;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
@@ -22,16 +24,16 @@ public class Main extends WebMvcConfigurerAdapter{
 		SpringApplication.run(Main.class, args);
 	}
 
-	@Override
-	public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
-		super.configureMessageConverters(converters);
-		/**
-		 * 1. 定义一个convert消息转换对象
-		 * 2. 添加fastJson的配置信息
-		 * 3. 在convert中添加配置信息
-		 * 4. 将convert添加到converters当中
-		 */
-
+	/**
+	 * @methodName fastJsonHttpMessageConverters
+	 * @author xiongzl
+	 * @date 2018/2/17
+	 * @Param
+	 * @return org.springframework.boot.autoconfigure.web.HttpMessageConverters
+	 * @desc 使用@Bean的方式注入FastJsonHttpMessageConverter对象
+	 */
+	@Bean
+	public HttpMessageConverters fastJsonHttpMessageConverters() {
 		// 1. 定义一个convert消息转换对象
 		FastJsonHttpMessageConverter fastConverter = new FastJsonHttpMessageConverter();
 
@@ -42,6 +44,7 @@ public class Main extends WebMvcConfigurerAdapter{
 		// 3. 在convert中添加配置信息
 		fastConverter.setFastJsonConfig(fastJsonConfig);
 		// 4. 将convert添加到converters当中
-		converters.add(fastConverter);
+		HttpMessageConverter<?> converter = fastConverter;
+		return new HttpMessageConverters(converter);
 	}
 }
